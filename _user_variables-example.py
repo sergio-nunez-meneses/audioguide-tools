@@ -1,4 +1,4 @@
-from audioguide_descriptors import _descriptors
+from audioguide_descriptors import _descriptors as d
 
 _samples_path = "/path/to/samples"
 _target_path = "/path/to/target"
@@ -21,16 +21,16 @@ CORPUS = [
 
 # Search
 SEARCH = [
-	spass("ratio_limit", d(_descriptors.amp.averaged.seg), maxratio=1),
-	spass("closest", d(_descriptors.mfcc.averaged)),
+	spass("ratio_limit", d(d.amp.averaged.seg), maxratio=1),
+	spass("closest", d(d.mfcc.averaged)),
 ]
 
 # Superimposition
 SUPERIMPOSE = si(maxSegment=4)
 
 # Output
-_descr_used = f"{_descriptors.amp.averaged.seg}+{_descriptors.mfcc.averaged}"
-_output_file = f"{_output_path}/$TIME_{_target_name}_{_descr_used}_{_instrument_name}"
+_descriptors = f"{d.amp.averaged.seg}+{d.mfcc.averaged}"
+_output_file = f"{_output_path}/$TIME_{_target_name}_{_descriptors}_{_instrument_name}"
 
 MAXMSP_OUTPUT_FILEPATH = None
 OUTPUT_LABEL_FILEPATH = None
